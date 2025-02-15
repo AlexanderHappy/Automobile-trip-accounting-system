@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('models', function (Blueprint $table) {
-            $table->foreign('brand_id')->references('id')->on('brands')->cascadeOnDelete();
+        Schema::create('auto_trip_data', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('bulk')->unsigned();
+            $table->bigInteger('consumption')->unsigned();
+            $table->bigInteger('mileage')->unsigned();
+            $table->timestamps();
         });
     }
 
@@ -21,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('models', function (Blueprint $table) {
-            $table->dropForeign(['brand_id']);
-            $table->dropColumn(['brand_id']);
-        });
+        Schema::dropIfExists('auto_trip_data');
     }
 };

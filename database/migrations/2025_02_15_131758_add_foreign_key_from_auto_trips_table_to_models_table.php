@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('auto_trips', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('auto_trips', function (Blueprint $table) {
+            $table->foreignId('car_model_id')->constrained('car_models');
         });
     }
 
@@ -22,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('auto_trips');
+        Schema::table('auto_trips', function (Blueprint $table) {
+            $table->dropForeign('auto_trips_car_model_id_foreign');
+            $table->dropColumn('car_model_id');
+        });
     }
 };
