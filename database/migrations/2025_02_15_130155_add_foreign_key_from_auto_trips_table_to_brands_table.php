@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('auto_trips', function (Blueprint $table) {
-            $table->foreignId('car_brand_id')->constrained('car_brands');
+            $table->foreign('car_brand_id', 'fk_auto_trips_car_brand_id_to_car_brands')->references('id')->on('car_brands');
         });
     }
 
@@ -22,8 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('auto_trips', function (Blueprint $table) {
-            $table->dropForeign('auto_trips_car_brand_id_foreign');
-            $table->dropColumn('car_brand_id');
+            $table->dropForeign('fk_auto_trips_car_brand_id_to_car_brands');
         });
     }
 };
