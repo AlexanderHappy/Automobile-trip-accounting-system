@@ -2,16 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\CarBrands;
+use App\Models\CarBrandsModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-class CarModelsFactory extends Factory
+
+class CarModelsModelFactory extends Factory
 {
     public function definition(): array
     {
-        $carBrandIds = CarBrands::pluck('id')->toArray();
+        $carBrandIds = CarBrandsModel::pluck('id')->toArray();
 
         return [
             'car_model_name' => fake()->lastName(),
