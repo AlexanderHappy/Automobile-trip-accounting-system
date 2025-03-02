@@ -26,8 +26,11 @@ services:
         build:
             context: .
             dockerfile: ./docker/php/Dockerfile
+        extra_hosts:
+            - host.docker.internal:host-gateway
         volumes:
             - ./:/var/www/html
+            # TODO Выяснить зачем это нужно
             - /etc/passwd:/etc/passwd
             - /etc/groups:/etc/groups
 
