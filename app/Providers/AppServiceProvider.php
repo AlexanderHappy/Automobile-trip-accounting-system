@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Interfaces\InterfaceRepositoriesAutoTrips;
-use App\Repositories\RepositoriesAutoTrips;
+use App\Repositories\AutoTrips\AutoTripsRepositories;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(InterfaceRepositoriesAutoTrips::class, function ($app) {
-            return $app->make(RepositoriesAutoTrips::class);
+            return $app->make(AutoTripsRepositories::class);
         });
     }
 

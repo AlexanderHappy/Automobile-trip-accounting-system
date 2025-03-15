@@ -3,10 +3,10 @@
 namespace Database\Factories;
 
 
-use App\Models\AutoTripDataModel;
 use App\Models\AutoTripsBrandModelModel;
 use App\Models\CarBrandsModel;
 use App\Models\CarModelsModel;
+use App\Models\AutoTripDataModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AutoTripsModelFactory extends Factory
