@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             '/*'
         ]);
-        $middleware->append(\App\Http\Middleware\AuthenticateOnceWithBasicAuth::class);
+        /*$middleware->append(\App\Http\Middleware\AuthenticateOnceWithBasicAuth::class);*/
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (Throwable $e, Request $request) {

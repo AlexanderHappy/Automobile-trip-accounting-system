@@ -11,4 +11,10 @@ class CarModelsModel extends Model
 
     protected $table = 'car_models';
     protected $fillable = ['car_model_name'];
+
+    // Relationship with CarBrand model
+    public function carBrand(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(CarBrandsModel::class, 'car_brand_id');
+    }
 }

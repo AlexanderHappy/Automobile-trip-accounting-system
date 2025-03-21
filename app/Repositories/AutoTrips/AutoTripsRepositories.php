@@ -4,6 +4,7 @@ namespace App\Repositories\AutoTrips;
 
 use App\Attributes\NotEmpty;
 use App\Dto\AutoTrips\AutoTripsDto;
+use App\Dto\AutoTrips\AutoTripsStoreDto;
 use App\Exception\AutoTripsDto\WrongTypePropException;
 use App\Exception\Repositories\AutoTrips\NoAutoTripsFoundException;
 use App\Interfaces\InterfaceRepositoriesAutoTrips;
@@ -36,6 +37,7 @@ class AutoTripsRepositories implements InterfaceRepositoriesAutoTrips
             ->take(5)
             ->get();
 
+
         $this->autoTripsValidator::validate($this, "autoTrips");
 
         $splFixedArray = new \SplFixedArray($this->autoTrips->count());
@@ -54,6 +56,18 @@ class AutoTripsRepositories implements InterfaceRepositoriesAutoTrips
         }
 
         return $splFixedArray;
+    }
+
+    public function store(AutoTripsStoreDto $autoTripsStoreDto): bool
+    {
+        return AutoTripsModel::insert([
+            'car_brand_id' => $autoTripsStoreDto->__get("car_brand_id"),
+            'car_model_id' => $autoTripsStoreDto->__get("car_model_id"),
+            'auto_trip_data_id' => $autoTripsStoreDto->__get("auto_trip_data_id"),
+            'auto_trip_id' => $autoTripsStoreDto->__get("auto_trip_id"),
+            'created_at' => $autoTripsStoreDto->__get("created_at"),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
@@ -82,32 +96,37 @@ class AutoTripsRepositories implements InterfaceRepositoriesAutoTrips
 
     public function destroy(int $autoTripId): bool
     {
-        DB::transaction(function () use ($autoTripId) {
-            $autoTrip = AutoTripsModel::where("id", $autoTripId)
+        return DB::transaction(function () use ($autoTripId) {
+            $this->autoTrip = AutoTripsModel::where("id", $autoTripId)
                 ->with("autoTripData", "autoTripsBrandModel")
                 ->first();
 
+            // Валидация на наличие всех трех
             $this->autoTripsValidator::validateAutoTripReadDestroy($this, "autoTrip", $autoTripId);
 
-            if ($autoTrip) {
-                // Удаляем связанную запись из auto_trip_data
-                /*
-                 * TODO Написать проверку на каждую запись полученную из таблицы.
-                 * */
-                if ($autoTrip->autoTripData) {
-                    $autoTrip->autoTripData->delete();
-                }
+            // Удаляем связанные данные, если они существуют
+            $this->autoTrip->autoTripData->delete();
+            $this->autoTrip->autoTripsBrandModel->delete();
 
-                // Удаляем связанную запись из auto_trips_brand_model
-                if ($autoTrip->autoTripsBrandModel) {
-                    $autoTrip->autoTripsBrandModel->delete();
-                }
-
-                // Удаляем саму запись из auto_trips
-                $autoTrip->delete();
-            }
+            // Удаляем основную запись
+            return $this->autoTrip->delete();
         });
+    }
 
-        dd();
+    /**
+     * Удаляет связанную запись, если она существует
+     *
+     * @param object $relatedModel
+     * @param string $relationName
+     * @return void
+     * @throws \Exception
+     */
+    private function deleteRelatedData(object $relatedModel, string $relationName): void
+    {
+        if (!$relatedModel) {
+            throw new \Exception("Related data '{$relationName}' not found for deletion.");
+        }
+
+        $relatedModel->delete();
     }
 }

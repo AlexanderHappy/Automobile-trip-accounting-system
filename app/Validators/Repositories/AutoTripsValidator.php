@@ -31,7 +31,7 @@ class AutoTripsValidator
             $object,
             $property,
             fn($value) => is_null($value),
-            "No auto trip found by id: {$autoTripId}"
+            "No auto trip not found by id: {$autoTripId}"
         );
     }
 
@@ -61,5 +61,12 @@ class AutoTripsValidator
         if ($isEmptyCondition($propertyValue)) {
             throw new NoAutoTripsFoundException($exceptionMessage);
         }
+        /*if ($isEmptyCondition($propertyValue->autoTripData)) {
+            throw new NoAutoTripsFoundException("Related data 'autoTripData' not found for deletion.");
+        }
+
+        if ($isEmptyCondition($propertyValue->autoTripsBrandModel)) {
+            throw new NoAutoTripsFoundException("Related data 'autoTripsBrandModel' not found for deletion.");
+        }*/
     }
 }

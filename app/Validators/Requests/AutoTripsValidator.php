@@ -2,15 +2,14 @@
 
 namespace App\Validators\Requests;
 
-use App\Exception\Requests\AutoTrips\WrongDataProvidedDeleteAutoTripsFoundException;
-use App\Exception\Requests\AutoTrips\WrongDataProvidedReadAutoTripsFoundException;
+use App\Exception\Requests\AutoTrips\WrongDataProvidedAutoTripsFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AutoTripsValidator
 {
     /**
-     * @throws WrongDataProvidedReadAutoTripsFoundException
+     * @throws WrongDataProvidedAutoTripsFoundException
      */
     public static function validateRead(Request $request): void
     {
@@ -19,12 +18,16 @@ class AutoTripsValidator
         ]);
 
         if ($validator->fails()) {
-            throw new WrongDataProvidedReadAutoTripsFoundException(
+            throw new WrongDataProvidedAutoTripsFoundException(
                 $validator->errors()->first(),
                 204
             );
         }
     }
+
+    /**
+     * @throws WrongDataProvidedAutoTripsFoundException
+     */
     public static function validateDelete(Request $request): void
     {
         $validator = Validator::make($request->all(), [
@@ -32,7 +35,28 @@ class AutoTripsValidator
         ]);
 
         if ($validator->fails()) {
-            throw new WrongDataProvidedDeleteAutoTripsFoundException(
+            throw new WrongDataProvidedAutoTripsFoundException(
+                $validator->errors()->first(),
+                204
+            );
+        }
+    }
+
+    /**
+     * @throws WrongDataProvidedAutoTripsFoundException
+     */
+    public static function validateStore(Request $request): void
+    {
+        $validator = Validator::make($request->all(), [
+            "car_model_id" => "required|integer",
+            "bulk" => "required|integer",
+            "consumption" => "required|integer",
+            "mileage" => "required|integer",
+            "created_at" => "required|date_format:Y-m-d",
+        ]);
+
+        if ($validator->fails()) {
+            throw new WrongDataProvidedAutoTripsFoundException(
                 $validator->errors()->first(),
                 204
             );

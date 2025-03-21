@@ -33,7 +33,7 @@ class AutoTripsModel extends Model
         return $this->belongsTo(CarModelsModel::class, 'car_model_id');
     }
 
-    // Relationship with AutoTripData model
+    // Relationship with AutoTripDataRepositories model
     public function autoTripData(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(AutoTripDataModel::class, 'auto_trip_data_id');
