@@ -2,7 +2,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
+        "build": "npm run type-check && vite build",
+        "type-check": "vue-tsc --noEmit",
         "dev": "vite",
         "watch": "vite"
     },
@@ -12,12 +13,17 @@
         "@fortawesome/vue-fontawesome": "^3.0.8",
         "@primevue/themes": "^4.2.5",
         "@types/node": "^22.13.10",
+        "@typescript-eslint/eslint-plugin": "^8.28.0",
+        "@typescript-eslint/parser": "^8.28.0",
         "@vitejs/plugin-vue": "^5.1.4",
+        "@vue/tsconfig": "^0.7.0",
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.4",
         "canvas-confetti": "^1.9.3",
         "concurrently": "^9.0.1",
         "dotenv-webpack": "^8.1.0",
+        "eslint": "^9.23.0",
+        "eslint-plugin-vue": "^10.0.0",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.47",
         "postcss-import": "^16.1.0",
@@ -27,12 +33,16 @@
         "typescript": "^5.8.2",
         "vite": "^6.0",
         "vue": "^3.5.12",
+        "vue-eslint-parser": "^10.1.1",
         "vue-loader": "^17.4.2",
         "vue-router": "^4.4.5",
+        "vue-tsc": "^2.2.8",
         "vuex": "^4.1.0"
     },
     "dependencies": {
         "@primevue/themes": "^4.2.5",
+        "@vue/eslint-config-typescript": "^14.5.0",
+        "eslint-config-prettier": "^10.1.1",
         "tailwindcss-primeui": "^0.3.4"
     }
 }

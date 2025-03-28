@@ -4,7 +4,7 @@ import Create from  "./components/pages/Create.vue"
 import LayoutEmpty from "./components/layout/LayoutEmpty.vue";
 
 
-const route = function (name, path, component, permission, layout = LayoutEmpty) {
+const route = function (name: string, path: string, component: object, permission: object, layout: object = LayoutEmpty) {
     return {
         name: name,
         path: path,

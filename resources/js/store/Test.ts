@@ -1,4 +1,4 @@
-import {request} from "../utils/request";
+import {request} from "@/utils/request";
 
 export default {
 
@@ -12,7 +12,7 @@ export default {
 
     },
     actions: {
-        async indexTest(context, payload) {
+        async indexTest(context: object, payload: object) {
             return request("/api/test/", {
                 headers: {
                     "Content-Type": "application/json"

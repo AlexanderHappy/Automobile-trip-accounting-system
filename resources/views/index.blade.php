@@ -7,6 +7,6 @@
 </head>
 <body>
     <div id="app"></div>
-    @vite('resources/js/index.js')
+    @vite('resources/js/index.ts')
 </body>
 </html>

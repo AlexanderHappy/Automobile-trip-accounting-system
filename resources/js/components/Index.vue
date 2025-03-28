@@ -3,10 +3,11 @@
         <router-view />
     </component>
 </template>
-<script setup>
+<script lang="ts" setup>
 import {computed} from "vue"
 import {useRoute} from "vue-router"
 import {useStore} from "vuex";
+import type {State} from "@/store.ts";
 
 const route = useRoute()
 const store = useStore();

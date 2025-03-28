@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "es2016",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,              // Включает все строгие проверки
+    "noImplicitReturns": true,   // Требует явный возврат во всех ветках (кроме void)
+    "noImplicitThis": true,
+    "skipLibCheck": true,
+    /*"noImplicitAny": false,*/
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "resources/js/*"
+      ]
+    }
+  },
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "include": [
+    "resources/js/**/*.ts",
+    "resources/js/**/*.d.ts",
+    "resources/js/**/*.vue"
+  ]
+}
