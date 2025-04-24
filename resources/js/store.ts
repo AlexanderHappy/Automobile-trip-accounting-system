@@ -1,15 +1,8 @@
 import {createStore} from "vuex";
-import Test from "./store/Test.ts";
-
-export interface State {
-
-}
+import AutoTrips from "@/store/AutoTrips.ts";
 
 export default createStore({
     modules: {
-        test: Test,
+        autoTrips: AutoTrips,
     },
-    actions: {
-
-    },
-})
+});

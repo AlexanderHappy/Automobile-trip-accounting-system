@@ -9,6 +9,8 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome"
 import {fas} from "@fortawesome/free-solid-svg-icons"
 import Tooltip from "primevue/tooltip"
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import Index from "./components/Index.vue";
 
 library.add(fas)

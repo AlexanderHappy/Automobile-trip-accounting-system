@@ -6,7 +6,7 @@
     <title>Sandbox</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app" ></div>
     @vite('resources/js/index.ts')
 </body>
 </html>
