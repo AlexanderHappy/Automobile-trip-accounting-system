@@ -3,11 +3,19 @@
 
     <section class="px-10 py-10">
         <DataTable :value="store.getters['autoTrips/GET_AUTO_TRIPS']"
+                   removableSort
                    stripedRows
+                   showGridlines
+                   paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
                    size="small"
-                    pt:root:class=""
-                    pt:tablecontainer:class="rounded-md shadow-lg">
-            <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
+                   pt:tablecontainer:class="rounded-md shadow-lg">
+
+            <Column v-for="col of columns"
+                    :key="col.field"
+                    :field="col.field"
+                    :header="col.header"
+                    sortable=""
+            />
         </DataTable>
     </section>
 </template>

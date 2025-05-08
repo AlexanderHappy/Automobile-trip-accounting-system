@@ -4,8 +4,6 @@ import type IAutoTrips from "@/utils/interfaces/IAutoTrips.ts";
 import type State from "@/utils/interfaces/IAutoTripsState.ts";
 import changeTypeNumber from "@/utils/format.ts";
 
-
-
 export default {
     namespaced: true,
 

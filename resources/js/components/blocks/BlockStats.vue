@@ -1,6 +1,6 @@
 <template>
-    <article class="rounded-md shadow-lg overflow-hidden">
-        <section class="w-full h-[2.2rem]  bg-[#ebf0f5] text-center flex items-center justify-center">
+    <article class="border rounded-md shadow-lg overflow-hidden">
+        <section class="w-full h-[2.2rem]  bg-[#ebf0f5] text-center flex items-center justify-center font-semibold text-[#334155]">
             <span>
                 {{title}}
             </span>
