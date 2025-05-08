@@ -37,7 +37,6 @@ class AutoTripsRepositories implements InterfaceRepositoriesAutoTrips
             ->take(5)
             ->get();
 
-
         $this->autoTripsValidator::validate($this, "autoTrips");
 
         $splFixedArray = new \SplFixedArray($this->autoTrips->count());

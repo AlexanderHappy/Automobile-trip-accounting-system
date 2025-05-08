@@ -21,6 +21,9 @@ createApp(Index)
     .use(PrimeVue, {
         theme: {
             preset: Aura,
+            options: {
+                darkModeSelector: false,
+            }
         }
     })
     .use(ToastService)
