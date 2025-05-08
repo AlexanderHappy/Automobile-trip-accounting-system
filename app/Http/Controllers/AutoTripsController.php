@@ -1,15 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\AutoTrips;
+namespace App\Http\Controllers;
 
-use App\Dto\AutoTrips\AutoTripDataDto;
-use App\Dto\AutoTrips\AutoTripsStoreDto;
+use App\Dto\AutoTrips\DtoDataAutoTripAbstractAutoTrips;
 use App\Exception\AutoTripsDto\WrongTypePropException;
 use App\Exception\Requests\AutoTrips\WrongDataProvidedAutoTripsFoundException;
-use App\Repositories\AutoTripBrandModel\AutoTripBrandModelRepository;
-use App\Repositories\AutoTripData\AutoTripDataRepositories;
-use App\Repositories\AutoTrips\AutoTripsRepositories;
-use App\Repositories\CarModels\CarModelsRepository;
 use App\Services\AutoTrips\AutoTripsService;
 use App\Validators\Requests\AutoTripsValidator;
 use Illuminate\Http\JsonResponse;
@@ -34,7 +29,7 @@ readonly class AutoTripsController extends AbstractController
         $this->autoTripsValidator::validateStore($request);
         $result = $this->autoTripsService
             ->store(
-                new AutoTripDataDto(
+                new DtoDataAutoTripAbstractAutoTrips(
                     $request->input('bulk'),
                     $request->input('consumption'),
                     $request->input('mileage'),

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AutoTrips\AutoTripsController;
+use App\Http\Controllers\AutoTripsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/auto-trips")->group(function () {

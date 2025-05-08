@@ -7,7 +7,7 @@ use App\Attributes\AutoTripsDto\IsInteger;
 use App\Exception\AutoTripsDto\WrongTypePropException;
 use App\Validators\Dto\AutoTripsDtoValidator;
 
-readonly class AutoTripDataDto extends AbstractAutoTripsDto
+readonly class DtoDataAutoTripAbstractAutoTrips extends DtoAbstractAutoTrips
 {
     /**
      * @throws \ReflectionException

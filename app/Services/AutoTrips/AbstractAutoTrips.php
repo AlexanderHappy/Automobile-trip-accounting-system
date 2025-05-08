@@ -2,8 +2,8 @@
 
 namespace App\Services\AutoTrips;
 
-use App\Dto\AutoTrips\AutoTripDataDto;
-use App\Dto\AutoTrips\AutoTripsDto;
+use App\Dto\AutoTrips\DtoDataAutoTripAbstractAutoTrips;
+use App\Dto\AutoTrips\DtoIndexAutoTripsAbstractAutoTrips;
 use App\Interfaces\InterfaceRepositoriesAutoTrips;
 
 abstract class AbstractAutoTrips
@@ -14,13 +14,13 @@ abstract class AbstractAutoTrips
     {
     }
 
-    abstract public function store(AutoTripDataDto $autoTripDataDto);
+    abstract public function store(DtoDataAutoTripAbstractAutoTrips $autoTripDataDto);
     public function index(): \SplFixedArray
     {
         return $this->repositoriesAutoTrips->index();
     }
 
-    public function read(int $autoTripId): AutoTripsDto
+    public function read(int $autoTripId): DtoIndexAutoTripsAbstractAutoTrips
     {
         return $this->repositoriesAutoTrips->read($autoTripId);
     }

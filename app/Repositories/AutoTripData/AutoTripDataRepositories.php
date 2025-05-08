@@ -2,7 +2,7 @@
 
 namespace App\Repositories\AutoTripData;
 
-use App\Dto\AutoTrips\AutoTripDataDto;
+use App\Dto\AutoTrips\DtoDataAutoTripAbstractAutoTrips;
 use App\Models\AutoTripDataModel;
 
 readonly class AutoTripDataRepositories
@@ -13,7 +13,7 @@ readonly class AutoTripDataRepositories
     {
     }
 
-    public function storeAutoTripData(AutoTripDataDto $autoTripDataDto): int
+    public function storeAutoTripData(DtoDataAutoTripAbstractAutoTrips $autoTripDataDto): int
     {
         return $this->autoTripDataModel->insertGetId([
             'bulk' => $autoTripDataDto->__get('bulk'),

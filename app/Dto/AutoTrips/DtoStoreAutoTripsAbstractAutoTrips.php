@@ -9,7 +9,7 @@ use App\Attributes\Description;
 use App\Exception\AutoTripsDto\WrongTypePropException;
 use App\Validators\Dto\AutoTripsDtoValidator;
 
-readonly class AutoTripsStoreDto extends AbstractAutoTripsDto
+readonly class DtoStoreAutoTripsAbstractAutoTrips extends DtoAbstractAutoTrips
 {
     /**
      * @throws \ReflectionException

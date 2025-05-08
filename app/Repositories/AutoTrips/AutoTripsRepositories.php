@@ -3,8 +3,8 @@
 namespace App\Repositories\AutoTrips;
 
 use App\Attributes\NotEmpty;
-use App\Dto\AutoTrips\AutoTripsDto;
-use App\Dto\AutoTrips\AutoTripsStoreDto;
+use App\Dto\AutoTrips\DtoIndexAutoTripsAbstractAutoTrips;
+use App\Dto\AutoTrips\DtoStoreAutoTripsAbstractAutoTrips;
 use App\Exception\AutoTripsDto\WrongTypePropException;
 use App\Exception\Repositories\AutoTrips\NoAutoTripsFoundException;
 use App\Interfaces\InterfaceRepositoriesAutoTrips;
@@ -42,22 +42,24 @@ class AutoTripsRepositories implements InterfaceRepositoriesAutoTrips
         $splFixedArray = new \SplFixedArray($this->autoTrips->count());
 
         for ($index = 0; $index < $splFixedArray->getSize(); $index++) {
-            $trip = $this->autoTrips->shift(); // Извлекаем и удаляем первый элемент
-            $splFixedArray[$index] = new AutoTripsDto(
-                $trip->id,
-                $trip->carBrand->car_brand_name,
-                $trip->carModel->car_model_name,
-                $trip->autoTripData->bulk,
-                $trip->autoTripData->consumption,
-                $trip->autoTripData->mileage,
-                $trip->created_at->format('d.m.Y')
+            // Извлекаем и удаляем первый элемент
+            $trip = $this->autoTrips->shift();
+            // Добавляем его в массив
+            $splFixedArray[$index] = new DtoIndexAutoTripsAbstractAutoTrips(
+                id: $trip->id,
+                carBrandName: $trip->carBrand->car_brand_name,
+                carModelName: $trip->carModel->car_model_name,
+                bulk:$trip->autoTripData->bulk,
+                consumption: $trip->autoTripData->consumption,
+                mileage: $trip->autoTripData->mileage,
+                createdAt: $trip->created_at->format('d.m.Y')
             );
         }
 
         return $splFixedArray;
     }
 
-    public function store(AutoTripsStoreDto $autoTripsStoreDto): bool
+    public function store(DtoStoreAutoTripsAbstractAutoTrips $autoTripsStoreDto): bool
     {
         return AutoTripsModel::insert([
             'car_brand_id' => $autoTripsStoreDto->__get("car_brand_id"),
@@ -74,7 +76,7 @@ class AutoTripsRepositories implements InterfaceRepositoriesAutoTrips
      * @throws \ReflectionException
      * @throws WrongTypePropException
      */
-    public function read(int $autoTripId): AutoTripsDto
+    public function read(int $autoTripId): DtoIndexAutoTripsAbstractAutoTrips
     {
         $this->autoTrip = AutoTripsModel::with("carBrand", "carModel", "autoTripData")
             ->where("id", $autoTripId)
@@ -82,7 +84,7 @@ class AutoTripsRepositories implements InterfaceRepositoriesAutoTrips
 
         $this->autoTripsValidator::validateAutoTripReadDestroy($this, "autoTrip", $autoTripId);
 
-        return new AutoTripsDto(
+        return new DtoIndexAutoTripsAbstractAutoTrips(
             $this->autoTrip->id,
             $this->autoTrip->carBrand->car_brand_name,
             $this->autoTrip->carModel->car_model_name,

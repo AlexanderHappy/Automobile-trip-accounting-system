@@ -2,9 +2,9 @@
 
 namespace App\Services\AutoTrips;
 
-use App\Dto\AutoTrips\AutoTripDataDto;
-use App\Dto\AutoTrips\AutoTripsDto;
-use App\Dto\AutoTrips\AutoTripsStoreDto;
+use App\Dto\AutoTrips\DtoDataAutoTripAbstractAutoTrips;
+use App\Dto\AutoTrips\DtoIndexAutoTripsAbstractAutoTrips;
+use App\Dto\AutoTrips\DtoStoreAutoTripsAbstractAutoTrips;
 use App\Dto\CarModels\CarBrandModelNamesDto;
 use App\Exception\AutoTripsDto\WrongTypePropException;
 use App\Interfaces\InterfaceRepositoriesAutoTrips;
@@ -30,7 +30,7 @@ class AutoTripsService extends AbstractAutoTrips
         parent::__construct($autoTripsRepository);
     }
 
-    public function store(AutoTripDataDto $autoTripDataDto): object
+    public function store(DtoDataAutoTripAbstractAutoTrips $autoTripDataDto): object
     {
         $this->autoTripDataId = $this->autoTripData->storeAutoTripData(
             $autoTripDataDto,
@@ -61,7 +61,7 @@ class AutoTripsService extends AbstractAutoTrips
     public function setAutoTripRecord(): bool
     {
         return $this->autoTripsRepository->store(
-            new AutoTripsStoreDto(
+            new DtoStoreAutoTripsAbstractAutoTrips(
                 $this->carBrandModelNameDto->__get('brandId'),
                 $this->carBrandModelNameDto->__get('modelId'),
                 $this->autoTripDataId,

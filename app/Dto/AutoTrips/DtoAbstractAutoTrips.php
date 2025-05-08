@@ -7,7 +7,7 @@ use App\Dto\AbstractDto;
 use BadMethodCallException;
 use ReflectionClass;
 
-readonly abstract class AbstractAutoTripsDto extends AbstractDto
+readonly abstract class DtoAbstractAutoTrips extends AbstractDto
 {
 
 }

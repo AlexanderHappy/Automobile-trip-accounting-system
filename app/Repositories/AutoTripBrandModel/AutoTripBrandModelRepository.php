@@ -2,7 +2,7 @@
 
 namespace App\Repositories\AutoTripBrandModel;
 
-use App\Dto\AutoTrips\AutoTripDataDto;
+use App\Dto\AutoTrips\DtoDataAutoTripAbstractAutoTrips;
 use App\Dto\CarModels\CarBrandModelNamesDto;
 use App\Models\AutoTripDataModel;
 use App\Models\AutoTripsBrandModelModel;
