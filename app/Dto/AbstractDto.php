@@ -54,11 +54,11 @@ readonly class AbstractDto
                 $description = $attributes[0]->newInstance()->text;
             }
 
-            $result[$property->getName()] = $value;
-            $descriptions[$property->getName()] = $description;
+            $result[$property->getName()] = [
+                "value" => $value,
+                "description" => $description,
+            ];
         }
-
-        $result['descriptions'] = $descriptions;
 
         return $result;
     }

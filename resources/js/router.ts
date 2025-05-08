@@ -8,6 +8,9 @@ import Create from  "./components/pages/Create.vue"
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import LayoutEmpty from "./components/layout/LayoutEmpty.vue";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import Read from "@/components/pages/Read.vue";
 
 
 // eslint-disable-next-line @typescript-eslint/typedef,@typescript-eslint/explicit-function-return-type
@@ -27,6 +30,7 @@ const route = function (name: string, path: string, component: object, permissio
 const routes = [
     route("index", "/", Home, []),
     route("create", "/create", Create, []),
+    route("read", "/read", Read, []),
 ]
 
 // eslint-disable-next-line @typescript-eslint/typedef

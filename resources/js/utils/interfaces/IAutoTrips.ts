@@ -1,9 +1,30 @@
 export default interface IAutoTrips {
-    id: number;
-    car_brand_name: string;
-    car_model_name: string;
-    bulk: number;
-    consumption: number;
-    mileage: number;
-    created_at: string;
+    id: {
+        value: number;
+        description: string;
+    };
+    car_brand_name: {
+        value: string;
+        description: string;
+    };
+    car_model_name: {
+        value: string;
+        description: string;
+    };
+    bulk: {
+        value: number;
+        description: string;
+    };
+    consumption: {
+        value: number;
+        description: string;
+    };
+    mileage: {
+        value: number;
+        description: string;
+    };
+    created_at: {
+        value: string;
+        description: string;
+    };
 }

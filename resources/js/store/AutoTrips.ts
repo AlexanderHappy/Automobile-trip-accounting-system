@@ -20,8 +20,14 @@ export default {
             state.autoTrips = payload.map((autoTrip: IAutoTrips) => {
                 return {
                     ...autoTrip,
-                    consumption: changeTypeNumber(autoTrip.consumption),
-                    bulk: changeTypeNumber(autoTrip.bulk),
+                    consumption: {
+                        value: changeTypeNumber(autoTrip.consumption.value),
+                        description: autoTrip.consumption.description
+                    },
+                    bulk: {
+                        value: changeTypeNumber(autoTrip.bulk.value),
+                        description: autoTrip.bulk.description
+                    },
                 }
             });
         },
@@ -31,12 +37,12 @@ export default {
 
             state.totalVolume = payload.reduce(
                 (totalBulk: number, curBulk: IAutoTrips): number => {
-                    return totalBulk + curBulk.bulk
+                    return totalBulk + curBulk.bulk.value
                 }, 0);
 
             state.totalConsumption = payload.reduce(
                 (totalConsumption: number, curConsumption: IAutoTrips): number => {
-                    return totalConsumption + curConsumption.consumption
+                    return totalConsumption + curConsumption.consumption.value
                 }, 0);
         }
     },

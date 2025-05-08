@@ -24,7 +24,7 @@ readonly class DtoIndexAutoTripsAbstractAutoTrips extends DtoAbstractAutoTrips
         #[Description('Объем перевозимого груза')]
         protected int    $bulk,
 
-        #[Description('Потребление')]
+        #[Description('Потребление за рейс')]
         protected int    $consumption,
 
         #[Description('Пробег за рейс')]

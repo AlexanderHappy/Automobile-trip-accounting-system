@@ -15,7 +15,16 @@
                     :field="col.field"
                     :header="col.header"
                     sortable=""
-            />
+            >
+                <template #body="props">
+                    <span @click="router.push({name: 'read'})"
+                          v-tooltip.right="props.data[props.field].description"
+                          class="cursor-pointer"
+                    >
+                        {{props.data[props.field].value}}
+                    </span>
+                </template>
+            </Column>
         </DataTable>
     </section>
 </template>
@@ -27,6 +36,7 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import EnumHome from "@/utils/classes/EnumHome.ts";
 import HeaderBlocks from "@/components/blocks/HeaderBlocks.vue";
+import router from "@/router.ts";
 
 const columns: Array<object> = EnumHome.columns;
 
